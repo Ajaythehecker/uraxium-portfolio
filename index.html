@@ -50,7 +50,7 @@
             border-radius: 50%;
             position: fixed;
             pointer-events: none;
-            z-index: 9999;
+            z-index: 99999;
             transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease, background 0.3s ease;
             transform: translate(-50%, -50%);
         }
@@ -62,7 +62,7 @@
             border-radius: 50%;
             position: fixed;
             pointer-events: none;
-            z-index: 10000;
+            z-index: 100000;
             transform: translate(-50%, -50%);
         }
 
@@ -77,6 +77,126 @@
             body { cursor: auto !important; }
             .cursor, .cursor-dot { display: none !important; }
             a, button, .gc, .pill, .music-btn, .nav-cta, .cta-primary, .cta-secondary, .fsoc, .stat, .proj-link { cursor: auto; }
+        }
+
+        /* ── ENTRY SCREEN ── */
+        .entry-screen {
+            position: fixed;
+            inset: 0;
+            z-index: 9000;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 0;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .entry-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .entry-screen::before {
+            content: '';
+            position: absolute; inset: 0;
+            background:
+                radial-gradient(ellipse 800px 600px at 20% 30%, rgba(255,255,255,0.04) 0%, transparent 50%),
+                radial-gradient(ellipse 600px 800px at 80% 70%, rgba(255,255,255,0.03) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .entry-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            padding: 0 2rem;
+        }
+
+        .entry-logo {
+            width: 64px;
+            height: 64px;
+            border-radius: 16px;
+            object-fit: contain;
+            margin-bottom: 0.5rem;
+            animation: fadeUp 0.6s ease 0.2s both;
+        }
+
+        .entry-name {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--ink);
+            letter-spacing: -0.03em;
+            animation: fadeUp 0.6s ease 0.3s both;
+        }
+
+        .entry-sub {
+            font-size: 0.78rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--mute);
+            letter-spacing: 0.08em;
+            animation: fadeUp 0.6s ease 0.4s both;
+        }
+
+        .entry-divider {
+            width: 1px;
+            height: 48px;
+            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.15), transparent);
+            animation: fadeUp 0.6s ease 0.5s both;
+        }
+
+        .entry-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 2.8rem;
+            border-radius: 100px;
+            background: var(--ink);
+            color: #000;
+            font-size: 0.95rem;
+            font-weight: 700;
+            border: none;
+            letter-spacing: -0.01em;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 32px rgba(255,255,255,0.2);
+            animation: fadeUp 0.6s ease 0.6s both;
+        }
+
+        .entry-btn:hover {
+            transform: translateY(-2px) scale(1.03);
+            box-shadow: 0 8px 48px rgba(255,255,255,0.35);
+        }
+
+        .entry-btn svg {
+            transition: transform 0.3s ease;
+        }
+
+        .entry-btn:hover svg {
+            transform: scale(1.2);
+        }
+
+        .entry-hint {
+            font-size: 0.7rem;
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--mute);
+            letter-spacing: 0.06em;
+            animation: fadeUp 0.6s ease 0.7s both;
+        }
+
+        /* ── MAIN CONTENT ── */
+        .main-content {
+            opacity: 0;
+            transition: opacity 0.8s ease 0.2s;
+        }
+
+        .main-content.visible {
+            opacity: 1;
         }
 
         body::before {
@@ -489,7 +609,7 @@
         .music-player {
             position: fixed; bottom: 2rem; left: 2rem;
             z-index: 500;
-            animation: fadeUp 0.8s ease 1.2s both;
+            animation: fadeUp 0.8s ease 0.3s both;
         }
         .music-btn {
             display: flex; align-items: center; gap: 0.75rem;
@@ -581,6 +701,22 @@
 <audio id="bgMusic" loop preload="auto">
     <source src="https://github.com/Ajaythehecker/uraxium-portfolio/raw/refs/heads/main/Heat%20Waves%20-%20Glass%20Animals.mp3" type="audio/mpeg">
 </audio>
+
+<!-- ── ENTRY SCREEN ── -->
+<div class="entry-screen" id="entryScreen">
+    <div class="entry-content">
+        <img src="https://api.cephie.app/img/FhLeA3XM" alt="uraxium." class="entry-logo">
+        <div class="entry-name">uraxium.</div>
+        <div class="entry-sub">Portfolio · 2026</div>
+        <button class="entry-btn" id="enterBtn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            Welcome!
+        </button>
+    </div>
+</div>
+
+<!-- ── MAIN CONTENT ── -->
+<div class="main-content" id="mainContent">
 
 <nav class="nav" id="nav">
     <div class="nav-inner">
@@ -950,6 +1086,8 @@
     </button>
 </div>
 
+</div>
+
 <script>
 const audio     = document.getElementById('bgMusic');
 const playIcon  = document.getElementById('playIcon');
@@ -961,6 +1099,18 @@ const cursorDot = document.querySelector('.cursor-dot');
 let playing = false;
 let mouseX = 0, mouseY = 0;
 let cursorX = 0, cursorY = 0;
+
+document.getElementById('enterBtn').addEventListener('click', () => {
+    audio.play().catch(() => {});
+    playIcon.style.display  = 'none';
+    pauseIcon.style.display = 'block';
+    bars.classList.add('playing');
+    playing = true;
+
+    document.getElementById('entryScreen').classList.add('hidden');
+    document.getElementById('mainContent').classList.add('visible');
+    document.body.style.overflow = 'auto';
+});
 
 function toggleMusic() {
     if (playing) {
@@ -1018,17 +1168,6 @@ document.querySelectorAll('a, button, .gc, .pill, .music-btn, .nav-cta, .cta-pri
     el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
     el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
 });
-
-document.addEventListener('mousemove', function autoPlayMusic() {
-    if (!playing) {
-        audio.play().catch(() => {});
-        playIcon.style.display  = 'none';
-        pauseIcon.style.display = 'block';
-        bars.classList.add('playing');
-        playing = true;
-    }
-    document.removeEventListener('mousemove', autoPlayMusic);
-}, { once: true });
 </script>
 </body>
 </html>
