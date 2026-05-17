@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>uraxium. - Portfolio</title>
     <meta property="og:title" content="uraxium.">
-    <meta property="og:description" content="I build virtual aviation platforms, automation tools, and scalable web systems.">
+    <meta property="og:description" content="I craft virtual aviation platforms, Discord automation ecosystems, and scalable web tools.">
     <meta property="og:type" content="website">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -25,11 +25,58 @@
         html { scroll-behavior: smooth; }
         ::selection { background: rgba(255,255,255,0.2); color: #fff; }
 
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 100px; }
+        ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.22); }
+        * { scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.12) #000; }
+
         body {
             background: var(--bg);
             color: var(--ink);
             font-family: 'Inter', sans-serif;
             overflow-x: hidden;
+            cursor: none;
+        }
+
+        a, button, .gc, .pill, .music-btn, .nav-cta, .cta-primary, .cta-secondary, .fsoc, .stat, .proj-link {
+            cursor: none;
+        }
+
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255,255,255,0.6);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: width 0.3s ease, height 0.3s ease, border-color 0.3s ease, background 0.3s ease;
+            transform: translate(-50%, -50%);
+        }
+
+        .cursor-dot {
+            width: 5px;
+            height: 5px;
+            background: rgba(255,255,255,0.9);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 10000;
+            transform: translate(-50%, -50%);
+        }
+
+        .cursor.hover {
+            width: 40px;
+            height: 40px;
+            border-color: rgba(255,255,255,0.9);
+            background: rgba(255,255,255,0.05);
+        }
+
+        @media (max-width: 1024px) {
+            body { cursor: auto !important; }
+            .cursor, .cursor-dot { display: none !important; }
+            a, button, .gc, .pill, .music-btn, .nav-cta, .cta-primary, .cta-secondary, .fsoc, .stat, .proj-link { cursor: auto; }
         }
 
         body::before {
@@ -45,7 +92,6 @@
             0%, 100% { opacity: 1; transform: scale(1); }
             50%       { opacity: 0.6; transform: scale(1.05); }
         }
-
         body::after {
             content: '';
             position: fixed; inset: 0; z-index: 1;
@@ -60,8 +106,8 @@
         }
         .nav.scrolled {
             padding: 0.8rem 0;
-            background: rgba(0,0,0,0.7);
-            backdrop-filter: blur(20px);
+            background: rgba(0,0,0,0.75);
+            backdrop-filter: blur(24px);
             border-bottom: 1px solid var(--glass-border);
         }
         .nav-inner { max-width: 1400px; margin: 0 auto; padding: 0 2.5rem; }
@@ -89,6 +135,7 @@
             background: var(--ink); color: #000;
             font-size: 0.88rem; font-weight: 600;
             text-decoration: none; transition: all 0.3s ease;
+            letter-spacing: -0.01em;
         }
         .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 4px 20px rgba(255,255,255,0.3); }
 
@@ -118,7 +165,7 @@
             position: relative; z-index: 10;
             display: flex; flex-direction: column;
             align-items: center; text-align: center;
-            max-width: 900px; padding: 0 2.5rem;
+            max-width: 920px; padding: 0 2.5rem;
         }
         .hero-badge {
             display: inline-flex; align-items: center; gap: 0.6rem;
@@ -151,11 +198,14 @@
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
         .h1-mute { color: rgba(255,255,255,0.25); font-weight: 300; }
+
         .hero-sub {
-            font-size: 1.1rem; color: var(--soft); line-height: 1.75;
-            max-width: 620px; font-weight: 400; margin-bottom: 3rem;
+            font-size: 1.12rem; color: var(--soft); line-height: 1.78;
+            max-width: 640px; font-weight: 400; margin-bottom: 3rem;
             animation: fadeUp 0.7s ease 0.3s both;
         }
+        .hero-sub strong { color: var(--ink); font-weight: 600; }
+
         .hero-ctas {
             display: flex; gap: 1rem; justify-content: center;
             flex-wrap: wrap; margin-bottom: 4rem;
@@ -181,6 +231,7 @@
             text-decoration: none; transition: all 0.3s ease;
         }
         .cta-secondary:hover { color: var(--ink); border-color: rgba(255,255,255,0.2); }
+
         .hero-pills {
             display: flex; gap: 0.5rem; flex-wrap: wrap;
             justify-content: center;
@@ -191,10 +242,11 @@
             border: 1px solid var(--glass-border);
             background: var(--glass); backdrop-filter: blur(8px);
             font-size: 0.75rem; font-weight: 500; color: var(--mute);
-            font-family: 'JetBrains Mono', monospace; cursor: default;
+            font-family: 'JetBrains Mono', monospace;
             transition: all 0.25s ease;
         }
         .pill:hover { border-color: rgba(255,255,255,0.2); color: var(--soft); }
+
         @keyframes fadeUp {
             from { opacity: 0; transform: translateY(20px); }
             to   { opacity: 1; transform: translateY(0); }
@@ -232,7 +284,7 @@
         .gc::before {
             content: '';
             position: absolute; top: 0; left: 0; right: 0; height: 2px;
-            background: linear-gradient(90deg, transparent, #fff, transparent);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
             opacity: 0; transition: opacity 0.4s ease;
         }
         .gc:hover {
@@ -241,7 +293,7 @@
             transform: translateY(-4px);
             box-shadow: 0 24px 64px rgba(0,0,0,0.5);
         }
-        .gc:hover::before { opacity: 0.4; }
+        .gc:hover::before { opacity: 1; }
 
         .stats-grid {
             display: grid; grid-template-columns: repeat(4,1fr);
@@ -258,16 +310,25 @@
             content: ''; position: absolute; top: 0;
             left: 50%; transform: translateX(-50%);
             width: 40%; height: 1px;
-            background: linear-gradient(90deg, transparent, #fff, transparent);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
             opacity: 0; transition: opacity 0.3s ease;
         }
         .stat:hover { background: var(--glass-hover); }
-        .stat:hover::before { opacity: 0.3; }
-        .stat-num { font-size: 3rem; font-weight: 800; line-height: 1; letter-spacing: -0.03em; margin-bottom: 0.5rem; }
-        .stat-label { font-size: 0.72rem; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.08em; text-transform: uppercase; color: var(--mute); }
+        .stat:hover::before { opacity: 1; }
+        .stat-num {
+            font-size: 3rem; font-weight: 800; line-height: 1;
+            letter-spacing: -0.03em; margin-bottom: 0.5rem; color: var(--ink);
+        }
+        .stat-label {
+            font-size: 0.72rem; font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 0.08em; text-transform: uppercase; color: var(--mute);
+        }
 
         .srv-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
-        .srv-num { font-size: 0.68rem; font-family: 'JetBrains Mono', monospace; color: var(--mute); letter-spacing: 0.1em; margin-bottom: 2rem; }
+        .srv-num {
+            font-size: 0.68rem; font-family: 'JetBrains Mono', monospace;
+            color: var(--mute); letter-spacing: 0.1em; margin-bottom: 2rem;
+        }
         .srv-icon {
             width: 48px; height: 48px; border-radius: 12px;
             background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border);
@@ -275,7 +336,7 @@
             color: var(--ink); margin-bottom: 1.5rem; transition: all 0.3s ease;
         }
         .gc:hover .srv-icon { background: var(--ink); color: #000; border-color: var(--ink); }
-        .gc h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.7rem; letter-spacing: -0.02em; }
+        .gc h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.7rem; letter-spacing: -0.02em; color: var(--ink); }
         .gc p  { font-size: 0.92rem; color: var(--soft); line-height: 1.7; margin-bottom: 1.5rem; }
         .srv-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
         .srv-tag {
@@ -285,8 +346,11 @@
         }
 
         .proj-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
-        .proj-meta { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 1.2rem; }
-        .proj-cat { font-size: 0.68rem; font-family: 'JetBrains Mono', monospace; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; color: var(--mute); }
+        .proj-meta { display: flex; align-items: center; gap: 0.7rem; margin-bottom: 1.2rem; flex-wrap: wrap; }
+        .proj-cat {
+            font-size: 0.68rem; font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; color: var(--mute);
+        }
         .proj-badge {
             padding: 0.2rem 0.65rem; border-radius: 100px;
             font-size: 0.62rem; font-family: 'JetBrains Mono', monospace;
@@ -302,7 +366,7 @@
             transition: gap 0.25s ease;
         }
         .proj-link:hover { gap: 0.8rem; }
-        .proj-link.disabled { color: var(--mute); cursor: default; opacity: 0.5; pointer-events: none; }
+        .proj-link.disabled { color: var(--mute); opacity: 0.5; pointer-events: none; }
 
         #roles { background: var(--surf); }
         .roles-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1.5rem; }
@@ -325,112 +389,91 @@
             display: flex; align-items: center; gap: 0.55rem;
         }
         .role-airline::before {
-            content: '';
-            width: 4px; height: 4px; border-radius: 50%;
+            content: ''; width: 4px; height: 4px; border-radius: 50%;
             background: rgba(255,255,255,0.25); flex-shrink: 0;
         }
         .role-desc { font-size: 0.88rem; color: var(--soft); line-height: 1.68; }
 
-        #quote { background: var(--bg); }
-        .quote-wrap {
-            max-width: 900px;
-            margin: 0 auto;
-            position: relative;
-        }
+        #story { background: var(--bg); }
+        .quote-wrap { max-width: 860px; margin: 0 auto; }
         .quote-box {
             background: var(--glass);
             backdrop-filter: blur(20px);
             border: 1px solid var(--glass-border);
             border-radius: 24px;
             padding: 4rem 4.5rem;
-            position: relative;
-            overflow: hidden;
+            position: relative; overflow: hidden;
             text-align: center;
+            transition: border-color 0.3s ease;
         }
+        .quote-box:hover { border-color: rgba(255,255,255,0.18); }
         .quote-box::before {
-            content: '';
-            position: absolute; top: 0; left: 0; right: 0; height: 2px;
-            background: linear-gradient(90deg, transparent, #fff, transparent);
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
             opacity: 0.3;
         }
         .quote-box::after {
-            content: '';
-            position: absolute;
-            width: 400px; height: 400px;
-            top: 50%; left: 50%;
+            content: ''; position: absolute;
+            width: 400px; height: 400px; top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            background: radial-gradient(circle, rgba(255,255,255,0.03) 0%, transparent 70%);
+            background: radial-gradient(circle, rgba(255,255,255,0.02) 0%, transparent 70%);
             pointer-events: none;
         }
-        .quote-mark-top {
-            font-size: 8rem;
-            line-height: 0.6;
-            font-weight: 300;
-            font-style: italic;
+        .quote-mark {
+            font-size: 8rem; line-height: 0.6;
+            font-weight: 300; font-style: italic;
             color: rgba(255,255,255,0.06);
-            display: block;
-            margin-bottom: 2rem;
+            display: block; margin-bottom: 2rem;
             user-select: none;
         }
         .quote-text {
-            font-size: clamp(1.1rem, 2vw, 1.4rem);
-            font-style: italic;
-            font-weight: 400;
-            line-height: 1.8;
-            color: var(--soft);
-            position: relative;
-            z-index: 1;
-            margin-bottom: 2.8rem;
+            font-size: clamp(1.05rem, 2vw, 1.35rem);
+            font-style: italic; font-weight: 400;
+            line-height: 1.82; color: var(--soft);
+            position: relative; z-index: 1; margin-bottom: 2.8rem;
         }
-        .quote-text strong {
-            color: var(--ink);
-            font-style: normal;
-            font-weight: 600;
-        }
+        .quote-text strong { color: var(--ink); font-style: normal; font-weight: 600; }
         .quote-author {
-            display: inline-flex;
-            align-items: center;
-            gap: 1rem;
+            display: inline-flex; align-items: center; gap: 1rem;
             padding: 0.8rem 1.4rem;
             background: rgba(255,255,255,0.05);
             border: 1px solid var(--glass-border);
             border-radius: 100px;
-            position: relative;
-            z-index: 1;
+            position: relative; z-index: 1;
         }
-        .quote-author-avatar {
-            width: 38px; height: 38px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 2px solid rgba(255,255,255,0.15);
-            flex-shrink: 0;
+        .qa-avatar {
+            width: 38px; height: 38px; border-radius: 50%;
             background: rgba(255,255,255,0.08);
+            border: 2px solid rgba(255,255,255,0.15);
             display: flex; align-items: center; justify-content: center;
-            font-size: 0.85rem; font-weight: 700; color: var(--ink);
+            font-size: 0.85rem; font-weight: 700; color: var(--ink); flex-shrink: 0;
         }
-        .quote-author-name {
-            font-size: 0.88rem;
-            font-weight: 600;
-            color: var(--ink);
-        }
-        .quote-author-title {
-            font-size: 0.7rem;
-            font-family: 'JetBrains Mono', monospace;
-            color: var(--mute);
-            margin-top: 0.15rem;
-            letter-spacing: 0.04em;
+        .qa-name { font-size: 0.88rem; font-weight: 600; color: var(--ink); text-align: left; }
+        .qa-title {
+            font-size: 0.7rem; font-family: 'JetBrains Mono', monospace;
+            color: var(--mute); margin-top: 0.15rem; letter-spacing: 0.04em; text-align: left;
         }
 
         footer { background: var(--surf); border-top: 1px solid var(--glass-border); position: relative; z-index: 10; }
-        .footer-top { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 4rem; padding: 5rem 0 6rem; }
+        .footer-top {
+            display: flex; align-items: flex-start; justify-content: space-between;
+            flex-wrap: wrap; gap: 4rem; padding: 5rem 0 6rem;
+        }
         .footer-brand { max-width: 280px; }
         .footer-logo-row { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 0.8rem; }
         .footer-tagline { font-size: 0.85rem; color: var(--mute); font-family: 'JetBrains Mono', monospace; line-height: 1.6; }
-        .footer-col h4 { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; font-family: 'JetBrains Mono', monospace; color: var(--mute); margin-bottom: 1.2rem; font-weight: 600; }
+        .footer-col h4 {
+            font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+            font-family: 'JetBrains Mono', monospace; color: var(--mute);
+            margin-bottom: 1.2rem; font-weight: 600;
+        }
         .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
         .footer-col a { font-size: 0.9rem; color: var(--soft); text-decoration: none; transition: color 0.2s ease; }
         .footer-col a:hover { color: var(--ink); }
-        .footer-bottom { padding: 1.5rem 0; border-top: 1px solid var(--glass-border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+        .footer-bottom {
+            padding: 1.5rem 0; border-top: 1px solid var(--glass-border);
+            display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem;
+        }
         .footer-copy { font-size: 0.75rem; color: var(--mute); font-family: 'JetBrains Mono', monospace; }
         .footer-socials { display: flex; gap: 0.6rem; }
         .fsoc {
@@ -442,6 +485,70 @@
             background: var(--glass); backdrop-filter: blur(12px);
         }
         .fsoc:hover { border-color: rgba(255,255,255,0.3); color: var(--ink); background: var(--glass-hover); }
+
+        .music-player {
+            position: fixed; bottom: 2rem; left: 2rem;
+            z-index: 500;
+            animation: fadeUp 0.8s ease 1.2s both;
+        }
+        .music-btn {
+            display: flex; align-items: center; gap: 0.75rem;
+            padding: 0.7rem 1.1rem 0.7rem 0.75rem;
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(24px) saturate(180%);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 100px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+            color: var(--ink);
+            min-width: 190px;
+            outline: none;
+        }
+        .music-btn:hover {
+            background: rgba(255,255,255,0.09);
+            border-color: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+        }
+        .music-icon {
+            width: 34px; height: 34px; border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.12);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; transition: all 0.3s ease; color: var(--ink);
+        }
+        .music-btn:hover .music-icon { background: var(--ink); color: #000; }
+        .music-info {
+            display: flex; flex-direction: column;
+            align-items: flex-start; flex: 1; min-width: 0;
+        }
+        .music-title {
+            font-size: 0.82rem; font-weight: 600; color: var(--ink);
+            white-space: nowrap; overflow: hidden; text-overflow: ellipsis; line-height: 1.3;
+        }
+        .music-artist {
+            font-size: 0.68rem; color: var(--mute);
+            font-family: 'JetBrains Mono', monospace;
+            letter-spacing: 0.04em; margin-top: 0.1rem;
+        }
+        .music-bars {
+            display: flex; align-items: flex-end; gap: 2px;
+            height: 16px; opacity: 0; transition: opacity 0.3s ease;
+            flex-shrink: 0;
+        }
+        .music-bars.playing { opacity: 1; }
+        .music-bars span {
+            display: block; width: 3px; border-radius: 2px;
+            background: rgba(255,255,255,0.5); animation: none;
+        }
+        .music-bars.playing span:nth-child(1) { animation: bar 0.9s ease-in-out infinite; }
+        .music-bars.playing span:nth-child(2) { animation: bar 0.7s ease-in-out infinite 0.15s; }
+        .music-bars.playing span:nth-child(3) { animation: bar 1.1s ease-in-out infinite 0.3s; }
+        .music-bars.playing span:nth-child(4) { animation: bar 0.8s ease-in-out infinite 0.1s; }
+        @keyframes bar {
+            0%, 100% { height: 4px;  opacity: 0.4; }
+            50%       { height: 14px; opacity: 1; }
+        }
 
         .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
         .reveal.vis { opacity: 1; transform: none; }
@@ -459,29 +566,21 @@
             .proj-grid, .srv-grid, .roles-grid { grid-template-columns: 1fr; }
             .stats-grid { grid-template-columns: 1fr; }
             .quote-box { padding: 2.5rem 1.8rem; }
-            .quote-mark-top { font-size: 5rem; }
+            .quote-mark { font-size: 5rem; }
+            .music-btn { min-width: 0; }
+            .music-info { display: none; }
+            .music-player { bottom: 1.2rem; left: 1.2rem; }
         }
-::-webkit-scrollbar {
-    width: 6px;
-}
-::-webkit-scrollbar-track {
-    background: #000;
-}
-::-webkit-scrollbar-thumb {
-    background: rgba(255,255,255,0.12);
-    border-radius: 100px;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: rgba(255,255,255,0.22);
-}
-
-* {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(255,255,255,0.12) #000;
-}
     </style>
 </head>
 <body>
+
+<div class="cursor"></div>
+<div class="cursor-dot"></div>
+
+<audio id="bgMusic" loop preload="auto">
+    <source src="https://github.com/Ajaythehecker/uraxium-portfolio/raw/refs/heads/main/Heat%20Waves%20-%20Glass%20Animals.mp3" type="audio/mpeg">
+</audio>
 
 <nav class="nav" id="nav">
     <div class="nav-inner">
@@ -495,7 +594,7 @@
                 <li><a href="#services">Services</a></li>
                 <li><a href="#projects">Projects</a></li>
                 <li><a href="#roles">Roles</a></li>
-                <li><a href="#quote">Story</a></li>
+                <li><a href="#story">Story</a></li>
             </ul>
             <a href="mailto:gamingmighty937@gmail.com" class="nav-cta">Let's talk →</a>
         </div>
@@ -507,12 +606,17 @@
     <div class="orb orb-2"></div>
     <div class="orb orb-3"></div>
     <div class="hero-center">
-        <div class="hero-badge"><div class="pulse-dot"></div>Open for work</div>
+        <div class="hero-badge">
+            <div class="pulse-dot"></div>
+            Open for work
+        </div>
         <h1 class="hero-h1">
             I build systems<br>
             <span class="h1-mute">that</span> <span class="h1-gradient">fly</span>
         </h1>
-        <p class="hero-sub">I craft virtual aviation platforms, Discord automation ecosystems, and scalable web tools. From flight tracking to real-time ATC — I build the infrastructure that keeps communities airborne.</p>
+        <p class="hero-sub">
+            I craft <strong>virtual aviation platforms</strong>, Discord automation ecosystems, and scalable web tools. From flight tracking to real-time ATC — I build the infrastructure that keeps communities airborne.
+        </p>
         <div class="hero-ctas">
             <a href="#projects" class="cta-primary">
                 Explore projects
@@ -577,7 +681,7 @@
                     </div>
                 </div>
                 <div class="gc reveal">
-                    <div class="srv-num">03 — Event & ATC Tools</div>
+                    <div class="srv-num">03 — Event &amp; ATC Tools</div>
                     <div class="srv-icon">
                         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6M5.64 5.64l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M5.64 18.36l4.24-4.24m4.24-4.24l4.24-4.24"/></svg>
                     </div>
@@ -602,35 +706,35 @@
             </div>
             <div class="proj-grid">
 
-                <div class="gc reveal" onclick="window.open('https://virtual-airlines-project-flight.lovable.app','_blank')" style="cursor:pointer;">
+                <div class="gc reveal" onclick="window.open('https://virtual-airlines-project-flight.lovable.app','_blank')" style="cursor:none;">
                     <div class="proj-meta"><span class="proj-cat">Virtual Airlines Hub</span><span class="proj-badge">Live</span></div>
                     <h3>Project Flight Portal</h3>
                     <p>The flagship hub representing Air France, ICAO, SpiceJet, KLM, and Malaysian Airlines. Gateway for pilots to check in and join the community.</p>
                     <a href="https://virtual-airlines-project-flight.lovable.app" target="_blank" class="proj-link">View live site →</a>
                 </div>
 
-                <div class="gc reveal" onclick="window.open('https://kav-pf-virtual.lovable.app','_blank')" style="cursor:pointer;">
+                <div class="gc reveal" onclick="window.open('https://kav-pf-virtual.lovable.app','_blank')" style="cursor:none;">
                     <div class="proj-meta"><span class="proj-cat">Regional Ops</span><span class="proj-badge">Beta</span></div>
                     <h3>Kuwait Airways Virtual Portal</h3>
                     <p>Official interface for KAv within Project Flight, managing regional assignments and pilot resources.</p>
                     <a href="https://kav-pf-virtual.lovable.app" target="_blank" class="proj-link">View portal →</a>
                 </div>
 
-                <div class="gc reveal" onclick="window.open('https://spicejet-pf.lovable.app','_blank')" style="cursor:pointer;">
+                <div class="gc reveal" onclick="window.open('https://spicejet-pf.lovable.app','_blank')" style="cursor:none;">
                     <div class="proj-meta"><span class="proj-cat">Indian Alliance</span><span class="proj-badge">Live</span></div>
                     <h3>SpiceJet PF Hub</h3>
                     <p>Operations portal for SpiceJet Virtual, managing routes, community updates, and airline branding.</p>
                     <a href="https://spicejet-pf.lovable.app" target="_blank" class="proj-link">View hub →</a>
                 </div>
 
-                <div class="gc reveal" onclick="window.open('https://pfevent-control.onrender.com','_blank')" style="cursor:pointer;">
+                <div class="gc reveal" onclick="window.open('https://pfevent-control.onrender.com','_blank')" style="cursor:none;">
                     <div class="proj-meta"><span class="proj-cat">Backend Tool</span><span class="proj-badge">WIP</span></div>
                     <h3>PF Event Control Center</h3>
                     <p>Backend-driven coordination tool to schedule and track live virtual aviation events across airlines.</p>
                     <a href="https://pfevent-control.onrender.com" target="_blank" class="proj-link">View tool →</a>
                 </div>
 
-                <div class="gc reveal" onclick="window.open('https://uraxium-gpt.vercel.app','_blank')" style="cursor:pointer;">
+                <div class="gc reveal" onclick="window.open('https://uraxium-gpt.vercel.app','_blank')" style="cursor:none;">
                     <div class="proj-meta"><span class="proj-cat">AI Assistant</span><span class="proj-badge">Beta</span></div>
                     <h3>Uraxium GPT</h3>
                     <p>A custom web-based AI assistant interface tailored for community projects and automation tools — built entirely from scratch.</p>
@@ -640,7 +744,7 @@
                 <div class="gc reveal">
                     <div class="proj-meta"><span class="proj-cat">ATC Utility</span><span class="proj-badge">WIP</span></div>
                     <h3>AATC-Scope</h3>
-                    <p>Advanced Air Traffic Control radar scope display for live traffic flow and airspace management during operations.</p>
+                    <p>Advanced Air Traffic Control radar scope display for live traffic flow and airspace management during large-scale operations.</p>
                     <span class="proj-link disabled">In development</span>
                 </div>
 
@@ -744,7 +848,7 @@
 
     <hr class="divider">
 
-    <section id="quote">
+    <section id="story">
         <div class="wrap">
             <div class="reveal" style="text-align:center;max-width:560px;margin:0 auto 4rem;">
                 <div class="s-label" style="justify-content:center;">My story</div>
@@ -753,23 +857,21 @@
             </div>
             <div class="quote-wrap reveal">
                 <div class="quote-box">
-                    <span class="quote-mark-top">"</span>
+                    <span class="quote-mark">"</span>
                     <p class="quote-text">
                         VA's have changed me a lot. Since the moment when I saw a VA, I thought it was gonna look like vamsys — but no, this has a
                         <strong>whole new system and experience.</strong>
                         This experience has made me an Owner, CEO and more.
-                        More importantly, I started
-                        <strong>developing stuff.</strong>
-                        I never thought I'd develop my own AI called
-                        <strong>UraxiumGPT.</strong>
+                        More importantly, I started <strong>developing stuff.</strong>
+                        I never thought I'd develop my own AI called <strong>UraxiumGPT.</strong>
                         I left developing 2 years ago.
                         <strong>This has changed my life in the past few months.</strong>
                     </p>
                     <div class="quote-author">
-                        <div class="quote-author-avatar">U</div>
+                        <div class="qa-avatar">U</div>
                         <div>
-                            <div class="quote-author-name">uraxium.</div>
-                            <div class="quote-author-title">Owner · Developer · Builder</div>
+                            <div class="qa-name">uraxium.</div>
+                            <div class="qa-title">Owner · Developer · Builder</div>
                         </div>
                     </div>
                 </div>
@@ -796,7 +898,7 @@
                     <li><a href="#services">Services</a></li>
                     <li><a href="#projects">Projects</a></li>
                     <li><a href="#roles">Roles</a></li>
-                    <li><a href="#quote">Story</a></li>
+                    <li><a href="#story">Story</a></li>
                 </ul>
             </div>
             <div class="footer-col">
@@ -832,7 +934,52 @@
     </div>
 </footer>
 
+<div class="music-player">
+    <button class="music-btn" id="musicBtn" onclick="toggleMusic()">
+        <span class="music-icon" id="musicIcon">
+            <svg id="playIcon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            <svg id="pauseIcon" width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="display:none;"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+        </span>
+        <div class="music-info">
+            <span class="music-title">Heat Waves</span>
+            <span class="music-artist">Glass Animals</span>
+        </div>
+        <div class="music-bars" id="musicBars">
+            <span></span><span></span><span></span><span></span>
+        </div>
+    </button>
+</div>
+
 <script>
+const audio     = document.getElementById('bgMusic');
+const playIcon  = document.getElementById('playIcon');
+const pauseIcon = document.getElementById('pauseIcon');
+const bars      = document.getElementById('musicBars');
+let   playing   = false;
+
+function toggleMusic() {
+    if (playing) {
+        audio.pause();
+        playIcon.style.display  = 'block';
+        pauseIcon.style.display = 'none';
+        bars.classList.remove('playing');
+        playing = false;
+    } else {
+        audio.play().catch(() => {});
+        playIcon.style.display  = 'none';
+        pauseIcon.style.display = 'block';
+        bars.classList.add('playing');
+        playing = true;
+    }
+}
+
+audio.addEventListener('ended', () => {
+    playIcon.style.display  = 'block';
+    pauseIcon.style.display = 'none';
+    bars.classList.remove('playing');
+    playing = false;
+});
+
 window.addEventListener('scroll', () => {
     document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 30);
 }, { passive: true });
@@ -844,6 +991,33 @@ document.querySelectorAll('.reveal').forEach(el => {
             setTimeout(() => el.classList.add('vis'), sibs.indexOf(el) * 100);
         }
     }, { threshold: 0.07 }).observe(el);
+});
+
+const cursor    = document.querySelector('.cursor');
+const cursorDot = document.querySelector('.cursor-dot');
+
+let mouseX = 0, mouseY = 0;
+let cursorX = 0, cursorY = 0;
+
+document.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    cursorDot.style.left = mouseX + 'px';
+    cursorDot.style.top  = mouseY + 'px';
+});
+
+function animateCursor() {
+    cursorX += (mouseX - cursorX) * 0.15;
+    cursorY += (mouseY - cursorY) * 0.15;
+    cursor.style.left = cursorX + 'px';
+    cursor.style.top  = cursorY + 'px';
+    requestAnimationFrame(animateCursor);
+}
+animateCursor();
+
+document.querySelectorAll('a, button, .gc, .pill, .music-btn, .nav-cta, .cta-primary, .cta-secondary, .fsoc, .stat').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
 });
 </script>
 </body>
