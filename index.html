@@ -955,7 +955,12 @@ const audio     = document.getElementById('bgMusic');
 const playIcon  = document.getElementById('playIcon');
 const pauseIcon = document.getElementById('pauseIcon');
 const bars      = document.getElementById('musicBars');
-let   playing   = false;
+const cursor    = document.querySelector('.cursor');
+const cursorDot = document.querySelector('.cursor-dot');
+
+let playing = false;
+let mouseX = 0, mouseY = 0;
+let cursorX = 0, cursorY = 0;
 
 function toggleMusic() {
     if (playing) {
@@ -993,12 +998,6 @@ document.querySelectorAll('.reveal').forEach(el => {
     }, { threshold: 0.07 }).observe(el);
 });
 
-const cursor    = document.querySelector('.cursor');
-const cursorDot = document.querySelector('.cursor-dot');
-
-let mouseX = 0, mouseY = 0;
-let cursorX = 0, cursorY = 0;
-
 document.addEventListener('mousemove', (e) => {
     mouseX = e.clientX;
     mouseY = e.clientY;
@@ -1019,6 +1018,17 @@ document.querySelectorAll('a, button, .gc, .pill, .music-btn, .nav-cta, .cta-pri
     el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
     el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
 });
+
+document.addEventListener('mousemove', function autoPlayMusic() {
+    if (!playing) {
+        audio.play().catch(() => {});
+        playIcon.style.display  = 'none';
+        pauseIcon.style.display = 'block';
+        bars.classList.add('playing');
+        playing = true;
+    }
+    document.removeEventListener('mousemove', autoPlayMusic);
+}, { once: true });
 </script>
 </body>
 </html>
