@@ -173,13 +173,8 @@
             box-shadow: 0 8px 48px rgba(255,255,255,0.35);
         }
 
-        .entry-btn svg {
-            transition: transform 0.3s ease;
-        }
-
-        .entry-btn:hover svg {
-            transform: scale(1.2);
-        }
+        .entry-btn svg { transition: transform 0.3s ease; }
+        .entry-btn:hover svg { transform: scale(1.2); }
 
         .entry-hint {
             font-size: 0.7rem;
@@ -195,9 +190,7 @@
             transition: opacity 0.8s ease 0.2s;
         }
 
-        .main-content.visible {
-            opacity: 1;
-        }
+        .main-content.visible { opacity: 1; }
 
         body::before {
             content: '';
@@ -415,6 +408,113 @@
         }
         .gc:hover::before { opacity: 1; }
 
+        /* ── MACH 2 STUDIOS CARD ACCENT ── */
+        .gc.studio-card {
+            border-color: rgba(255,255,255,0.12);
+            background: linear-gradient(135deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.02) 100%);
+        }
+        .gc.studio-card:hover {
+            border-color: rgba(255,255,255,0.25);
+            box-shadow: 0 24px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.1);
+        }
+        .studio-logo-row {
+            display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;
+        }
+        .studio-logo {
+            width: 52px; height: 52px; border-radius: 14px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0; overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .gc.studio-card:hover .studio-logo {
+            background: var(--ink); border-color: var(--ink);
+        }
+        .studio-logo svg { transition: all 0.3s ease; }
+        .gc.studio-card:hover .studio-logo svg { color: #000; }
+        .studio-name {
+            font-size: 1.4rem; font-weight: 800;
+            letter-spacing: -0.03em; color: var(--ink);
+            line-height: 1.1;
+        }
+        .studio-founded {
+            font-size: 0.65rem; font-family: 'JetBrains Mono', monospace;
+            color: var(--mute); letter-spacing: 0.1em;
+            text-transform: uppercase; margin-top: 0.2rem;
+        }
+        .studio-desc {
+            font-size: 0.95rem; color: var(--soft);
+            line-height: 1.75; margin-bottom: 1.8rem;
+        }
+        .studio-stats {
+            display: grid; grid-template-columns: repeat(3,1fr);
+            gap: 1px; background: var(--glass-border);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px; overflow: hidden; margin-bottom: 1.8rem;
+        }
+        .studio-stat {
+            background: rgba(255,255,255,0.02);
+            padding: 1rem 0.8rem; text-align: center;
+            transition: background 0.3s ease;
+        }
+        .studio-stat:hover { background: rgba(255,255,255,0.05); }
+        .studio-stat-num {
+            font-size: 1.4rem; font-weight: 800;
+            letter-spacing: -0.03em; color: var(--ink);
+            line-height: 1;
+        }
+        .studio-stat-label {
+            font-size: 0.6rem; font-family: 'JetBrains Mono', monospace;
+            color: var(--mute); letter-spacing: 0.08em;
+            text-transform: uppercase; margin-top: 0.3rem;
+        }
+        .studio-projects { display: flex; flex-direction: column; gap: 0.6rem; margin-bottom: 1.8rem; }
+        .studio-project-item {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0.7rem 1rem;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--glass-border);
+            border-radius: 10px; transition: all 0.25s ease;
+        }
+        .studio-project-item:hover {
+            background: rgba(255,255,255,0.06);
+            border-color: rgba(255,255,255,0.15);
+        }
+        .studio-project-name { font-size: 0.88rem; font-weight: 600; color: var(--ink); }
+        .studio-project-type {
+            font-size: 0.62rem; font-family: 'JetBrains Mono', monospace;
+            color: var(--mute); letter-spacing: 0.06em;
+        }
+        .studio-project-badge {
+            padding: 0.18rem 0.55rem; border-radius: 100px;
+            font-size: 0.58rem; font-family: 'JetBrains Mono', monospace;
+            font-weight: 600; letter-spacing: 0.06em;
+            background: rgba(255,255,255,0.08); color: var(--soft);
+            border: 1px solid var(--glass-border);
+        }
+        .studio-links { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+        .studio-link {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 0.6rem 1.4rem; border-radius: 100px;
+            font-size: 0.82rem; font-weight: 600;
+            text-decoration: none; transition: all 0.3s ease;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .studio-link.primary {
+            background: var(--ink); color: #000;
+            box-shadow: 0 4px 20px rgba(255,255,255,0.15);
+        }
+        .studio-link.primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(255,255,255,0.25);
+        }
+        .studio-link.secondary {
+            background: var(--glass); color: var(--soft);
+            border: 1px solid var(--glass-border); backdrop-filter: blur(12px);
+        }
+        .studio-link.secondary:hover { color: var(--ink); border-color: rgba(255,255,255,0.2); }
+
         .stats-grid {
             display: grid; grid-template-columns: repeat(4,1fr);
             gap: 1px; background: var(--glass-border);
@@ -574,6 +674,40 @@
             color: var(--mute); margin-top: 0.15rem; letter-spacing: 0.04em; text-align: left;
         }
 
+        /* ── STUDIO SECTION ── */
+        #studio { background: var(--bg); }
+        .studio-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+            align-items: start;
+        }
+        .studio-grid-right { display: flex; flex-direction: column; gap: 1.5rem; }
+        .studio-feature-card {
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 16px;
+            padding: 1.8rem;
+            transition: all 0.3s ease;
+        }
+        .studio-feature-card:hover {
+            border-color: rgba(255,255,255,0.18);
+            background: var(--glass-hover);
+            transform: translateY(-2px);
+        }
+        .studio-feature-icon {
+            width: 38px; height: 38px; border-radius: 10px;
+            background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--ink); margin-bottom: 1rem; transition: all 0.3s ease;
+        }
+        .studio-feature-card:hover .studio-feature-icon {
+            background: var(--ink); color: #000; border-color: var(--ink);
+        }
+        .studio-feature-title { font-size: 0.95rem; font-weight: 700; color: var(--ink); margin-bottom: 0.4rem; }
+        .studio-feature-desc { font-size: 0.82rem; color: var(--soft); line-height: 1.65; }
+
         footer { background: var(--surf); border-top: 1px solid var(--glass-border); position: relative; z-index: 10; }
         .footer-top {
             display: flex; align-items: flex-start; justify-content: space-between;
@@ -673,7 +807,10 @@
         .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.7s ease, transform 0.7s ease; }
         .reveal.vis { opacity: 1; transform: none; }
 
-        @media (max-width: 1100px) { .roles-grid { grid-template-columns: 1fr 1fr; } }
+        @media (max-width: 1100px) {
+            .roles-grid { grid-template-columns: 1fr 1fr; }
+            .studio-grid { grid-template-columns: 1fr; }
+        }
         @media (max-width: 1024px) {
             .proj-grid, .srv-grid { grid-template-columns: 1fr 1fr; }
             .stats-grid { grid-template-columns: repeat(2,1fr); }
@@ -690,6 +827,7 @@
             .music-btn { min-width: 0; }
             .music-info { display: none; }
             .music-player { bottom: 1.2rem; left: 1.2rem; }
+            .studio-stats { grid-template-columns: repeat(3,1fr); }
         }
     </style>
 </head>
@@ -702,7 +840,6 @@
     <source src="https://github.com/Ajaythehecker/uraxium-portfolio/raw/refs/heads/main/Heat%20Waves%20-%20Glass%20Animals.mp3" type="audio/mpeg">
 </audio>
 
-<!-- ── ENTRY SCREEN ── -->
 <div class="entry-screen" id="entryScreen">
     <div class="entry-content">
         <img src="https://api.cephie.app/img/FhLeA3XM" alt="uraxium." class="entry-logo">
@@ -715,7 +852,6 @@
     </div>
 </div>
 
-<!-- ── MAIN CONTENT ── -->
 <div class="main-content" id="mainContent">
 
 <nav class="nav" id="nav">
@@ -729,6 +865,7 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#projects">Projects</a></li>
+                <li><a href="#studio">Studio</a></li>
                 <li><a href="#roles">Roles</a></li>
                 <li><a href="#story">Story</a></li>
             </ul>
@@ -863,10 +1000,17 @@
                     <a href="https://spicejet-pf.lovable.app" target="_blank" class="proj-link">View hub →</a>
                 </div>
 
+                <div class="gc reveal" onclick="window.open('https://mach-2-studios.github.io/PFRP/','_blank')" style="cursor:none;">
+                    <div class="proj-meta"><span class="proj-cat">Route Planner</span><span class="proj-badge">Live</span></div>
+                    <h3>PFRP — Project Flight Route Planner</h3>
+                    <p>An immersive virtual aviation route planning platform built under Mach 2 Studios. Pilots can create and manage flight routes in a structured, a real life airspace environment.</p>
+                    <a href="https://mach-2-studios.github.io/PFRP/" target="_blank" class="proj-link">View platform →</a>
+                </div>
+
                 <div class="gc reveal" onclick="window.open('https://pfevent-control.onrender.com','_blank')" style="cursor:none;">
                     <div class="proj-meta"><span class="proj-cat">Backend Tool</span><span class="proj-badge">WIP</span></div>
                     <h3>PF Event Control Center</h3>
-                    <p>Backend-driven coordination tool to schedule and track live virtual aviation events across airlines.</p>
+                    <p>Backend-driven coordination tool to schedule and track live virtual aviation events across airlines. Powered by Mach 2 Studios</p>
                     <a href="https://pfevent-control.onrender.com" target="_blank" class="proj-link">View tool →</a>
                 </div>
 
@@ -891,6 +1035,118 @@
                     <span class="proj-link disabled">Discord integration</span>
                 </div>
 
+            </div>
+        </div>
+    </section>
+
+    <hr class="divider">
+
+    <section id="studio" style="background: var(--surf);">
+        <div class="wrap">
+            <div class="reveal" style="text-align:center;max-width:600px;margin:0 auto 4rem;">
+                <div class="s-label" style="justify-content:center;">My Studio</div>
+                <h2 class="s-h2">Mach 2 Studios</h2>
+                <p class="s-p" style="margin:0 auto;">The creative and technical engine behind virtual aviation's most ambitious projects.</p>
+            </div>
+
+            <div class="studio-grid">
+                <div class="gc studio-card reveal">
+                    <div class="studio-logo-row">
+                        <div>
+                            <div class="studio-name">Mach 2 Studios</div>
+                            <div class="studio-founded">Founded and Developer · Virtual Aviation</div>
+                        </div>
+                    </div>
+
+                    <p class="studio-desc">
+                        Mach 2 Studios is my independent development studio focused on building next-generation virtual aviation experiences. From immersive roleplay platforms to backend infrastructure — everything ships under one roof, with a commitment to quality and community.
+                    </p>
+
+                    <div class="studio-stats">
+                        <div class="studio-stat">
+                            <div class="studio-stat-num">2+</div>
+                            <div class="studio-stat-label">Projects</div>
+                        </div>
+                        <div class="studio-stat">
+                            <div class="studio-stat-num">1</div>
+                            <div class="studio-stat-label">Live release</div>
+                        </div>
+                        <div class="studio-stat">
+                            <div class="studio-stat-num">∞</div>
+                            <div class="studio-stat-label">Ambition</div>
+                        </div>
+                    </div>
+
+                    <div style="font-size:0.7rem;font-family:'JetBrains Mono',monospace;color:var(--mute);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.8rem;">Studio Projects</div>
+                    <div class="studio-projects">
+                        <div class="studio-project-item">
+                            <div>
+                                <div class="studio-project-name">PFRP</div>
+                                <div class="studio-project-type">Project Flight Route Planner</div>
+                            </div>
+                            <span class="studio-project-badge">Live</span>
+                        </div>
+                        <div class="studio-project-item">
+                            <div>
+                                <div class="studio-project-name">Project Flight Event Control</div>
+                                <div class="studio-project-type">ATC Control Suite made for Virtual Airlines events</div>
+                            </div>
+                            <span class="studio-project-badge">WIP - Live</span>
+                        </div>
+                        <div class="studio-project-item">
+                            <div>
+                                <div class="studio-project-name">More coming...</div>
+                                <div class="studio-project-type">Always building</div>
+                            </div>
+                            <span class="studio-project-badge">Soon</span>
+                        </div>
+                    </div>
+
+                    <div class="studio-links" style="margin-top:1.8rem;">
+                        <a href="https://mach-2-studios.github.io/PFRP/" target="_blank" class="studio-link primary">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                            Visit PFRP
+                        </a>
+                        <a href="https://github.com/Mach-2-Studios" target="_blank" class="studio-link secondary">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                            GitHub Org
+                        </a>
+                    </div>
+                </div>
+
+                <div class="studio-grid-right reveal">
+                    <div class="studio-feature-card">
+                        <div class="studio-feature-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                        </div>
+                        <div class="studio-feature-title">Roleplay-First Design</div>
+                        <div class="studio-feature-desc">Every project from Mach 2 Studios is built with immersion in mind. PFRP puts pilots into a living, breathing airspace where decisions matter and stories unfold in real time.</div>
+                    </div>
+
+                    <div class="studio-feature-card">
+                        <div class="studio-feature-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                        </div>
+                        <div class="studio-feature-title">Open Source by Default</div>
+                        <div class="studio-feature-desc">All Mach 2 Studios repositories live publicly on GitHub. Transparency, community contributions, and open collaboration are core to how the studio operates.</div>
+                    </div>
+
+                    <div class="studio-feature-card">
+                        <div class="studio-feature-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v6m0 6v6M5.64 5.64l4.24 4.24m4.24 4.24l4.24 4.24M1 12h6m6 0h6M5.64 18.36l4.24-4.24m4.24-4.24l4.24-4.24"/></svg>
+                        </div>
+                        <div class="studio-feature-title">Community-Driven Roadmap</div>
+                        <div class="studio-feature-desc">The virtual aviation community shapes what Mach 2 builds next. Feature requests, bug reports, and feedback from pilots directly drive the development pipeline.</div>
+                    </div>
+
+                    <div class="studio-feature-card">
+                        <div class="studio-feature-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                        </div>
+                        <div class="studio-feature-title">Full-Stack Delivery</div>
+                        <div class="studio-feature-desc">From database architecture to pixel-perfect UI — Mach 2 Studios ships complete products. No handoffs, no gaps. Just working software that goes live.</div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -978,6 +1234,21 @@
                     </div>
                 </div>
 
+                <div class="gc reveal">
+                    <div class="role-tier">Studio Founder</div>
+                    <div class="role-icon">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <h3>Founder — Mach 2 Studios</h3>
+                    <p class="role-desc">Sole founder and developer of Mach 2 Studios — a virtual aviation development org building immersive platforms, tools, and systems for the community.</p>
+                    <div class="role-sep"></div>
+                    <div class="role-airlines">
+                        <span class="role-airline">PFRP Platform</span>
+                        <span class="role-airline">AATC-Scope</span>
+                        <span class="role-airline">github.com/Mach-2-Studios</span>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -999,7 +1270,7 @@
                         <strong>whole new system and experience.</strong>
                         This experience has made me an Owner, CEO and more.
                         More importantly, I started <strong>developing stuff.</strong>
-                        I never thought I'd develop my own AI called <strong>UraxiumGPT.</strong>
+                        I never thought I'd develop my own AI called <strong>UraxiumGPT</strong> or found a studio called <strong>Mach 2 Studios.</strong>
                         I left developing 2 years ago.
                         <strong>This has changed my life in the past few months.</strong>
                     </p>
@@ -1007,7 +1278,7 @@
                         <div class="qa-avatar">U</div>
                         <div>
                             <div class="qa-name">uraxium.</div>
-                            <div class="qa-title">Owner · Developer · Builder</div>
+                            <div class="qa-title">Owner · Developer · Studio Founder</div>
                         </div>
                     </div>
                 </div>
@@ -1026,6 +1297,10 @@
                     <span class="logo-text">uraxium.</span>
                 </div>
                 <p class="footer-tagline">Building virtual aviation infrastructure.<br>One platform at a time.</p>
+                <div style="margin-top:1rem;padding:0.6rem 1rem;background:var(--glass);border:1px solid var(--glass-border);border-radius:10px;display:inline-flex;align-items:center;gap:0.6rem;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+                    <span style="font-size:0.72rem;font-family:'JetBrains Mono',monospace;color:var(--mute);">Mach 2 Studios founder</span>
+                </div>
             </div>
             <div class="footer-col">
                 <h4>Navigate</h4>
@@ -1033,6 +1308,7 @@
                     <li><a href="#about">About</a></li>
                     <li><a href="#services">Services</a></li>
                     <li><a href="#projects">Projects</a></li>
+                    <li><a href="#studio">Studio</a></li>
                     <li><a href="#roles">Roles</a></li>
                     <li><a href="#story">Story</a></li>
                 </ul>
@@ -1041,6 +1317,7 @@
                 <h4>Live Projects</h4>
                 <ul>
                     <li><a href="https://virtual-airlines-project-flight.lovable.app" target="_blank">Project Flight</a></li>
+                    <li><a href="https://mach-2-studios.github.io/PFRP/" target="_blank">PFRP ↗</a></li>
                     <li><a href="https://kav-pf-virtual.lovable.app" target="_blank">KAv Portal</a></li>
                     <li><a href="https://spicejet-pf.lovable.app" target="_blank">SpiceJet Hub</a></li>
                     <li><a href="https://pfevent-control.onrender.com" target="_blank">Event Control</a></li>
@@ -1050,17 +1327,21 @@
             <div class="footer-col">
                 <h4>Connect</h4>
                 <ul>
-                    <li><a href="https://github.com/Ajaythehecker" target="_blank">GitHub</a></li>
+                    <li><a href="https://github.com/Ajaythehecker" target="_blank">GitHub (Personal)</a></li>
+                    <li><a href="https://github.com/Mach-2-Studios" target="_blank">GitHub (Mach 2)</a></li>
                     <li><a href="https://discord.com/users/1458932852895781078" target="_blank">Discord</a></li>
                     <li><a href="mailto:gamingmighty937@gmail.com">Email</a></li>
                 </ul>
             </div>
         </div>
         <div class="footer-bottom">
-            <span class="footer-copy">&copy; 2026 uraxium. — All rights reserved.</span>
+            <span class="footer-copy">&copy; 2026 uraxium. &amp; Mach 2 Studios — All rights reserved.</span>
             <div class="footer-socials">
-                <a href="https://github.com/Ajaythehecker" target="_blank" class="fsoc" title="GitHub">
+                <a href="https://github.com/Ajaythehecker" target="_blank" class="fsoc" title="GitHub Personal">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                </a>
+                <a href="https://github.com/Mach-2-Studios" target="_blank" class="fsoc" title="Mach 2 Studios GitHub">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
                 </a>
                 <a href="https://discord.com/users/1458932852895781078" target="_blank" class="fsoc" title="Discord">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 0 0 .031.057 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
@@ -1164,7 +1445,7 @@ function animateCursor() {
 }
 animateCursor();
 
-document.querySelectorAll('a, button, .gc, .pill, .music-btn, .nav-cta, .cta-primary, .cta-secondary, .fsoc, .stat').forEach(el => {
+document.querySelectorAll('a, button, .gc, .pill, .music-btn, .nav-cta, .cta-primary, .cta-secondary, .fsoc, .stat, .studio-feature-card, .studio-project-item, .studio-link').forEach(el => {
     el.addEventListener('mouseenter', () => cursor.classList.add('hover'));
     el.addEventListener('mouseleave', () => cursor.classList.remove('hover'));
 });
